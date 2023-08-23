@@ -22,3 +22,7 @@ abstract test code to supplement learning in this book.
 - Add the crate to the `Cargo.toml` file.
 - OR run `cargo add <crate_name>` to add the crate to the `Cargo.toml` file.
 
+## How to inspect code
+
+- Run 'cargo expand' to expand macros.
+- For Tests: Run `cargo expand --test rust_file`.
