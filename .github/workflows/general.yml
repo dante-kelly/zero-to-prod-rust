@@ -129,8 +129,14 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+
       - name: Install Rust toolchain
         uses: dtolnay/rust-toolchain@stable
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          key: sqlx-${{ env.SQLX_VERSION }}
+
       - name: Install SQLx CLI
         run:
           cargo install sqlx-cli
@@ -138,9 +144,14 @@ jobs:
           --features ${{ env.SQLX_FEATURES }}
           --no-default-features
           --locked
+
+      - name: Install PostgreSQL client
+        run: sudo apt-get update && sudo apt-get install postgresql-client -y
+
       - name: Migration database
         run: SKIP_DOCKER=true ./scripts/init_db.sh
         working-directory: ${{ matrix.project }}
+
       - name: Generate code coverage
         run: |
           cargo tarpaulin --verbose
