@@ -111,9 +111,6 @@ jobs:
   coverage:
     name: Code coverage
     runs-on: ubuntu-latest
-    container:
-      image: xd009642/tarpaulin
-      options: --security-opt seccomp=unconfined
     strategy:
       matrix:
         project: [ zero2prod ]
