@@ -43,6 +43,6 @@ done
 # Initialize the sqlx database
 export DATABASE_URL=postgres://${DB_USER}:${DB_PASSWORD}@localhost:${DB_PORT}/${DB_NAME}
 sqlx database create
-sqlx migrate --source ./scripts/migrations run
+sqlx migrate run --source ./scripts/migrations
 
 >&2 echo "Postgres has been migrated, ready to go!"
