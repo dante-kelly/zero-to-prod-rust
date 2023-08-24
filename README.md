@@ -15,7 +15,7 @@ abstract test code to supplement learning in this book.
 
 ## How to watch changes
 
-1. Run cargo watch, and optionally link, with `cargo watch -x check -t test -x run`.
+1. Run cargo watch, and optionally link, with `cargo watch -x check -x test -x run`.
 
 ## How to add crates
 
@@ -24,5 +24,18 @@ abstract test code to supplement learning in this book.
 
 ## How to inspect code
 
-- Run 'cargo expand' to expand macros.
-- For Tests: Run `cargo expand --test rust_file`.
+- Run `cargo expand --bin {rust_target}` to expand macros.
+- For Tests: Run `cargo expand --test {rust_file}`.
+
+## How to use Docker
+
+- cd into the 'scripts' folder
+- Launch Postgres with `./scripts/init_db.sh`
+- Run `docker-compose down` to stop the containers
+
+## How to interact with the Database
+
+- The Database can be touched from PgAdmin through Docker after manually setting up PgAdmin.
+- OR you can use the CLI with `psql -h localhost -p 5432 -U postgres -d zero2prod`
+- OR you can use sqlx-cli with `cargo sqlx {cool_commands}` after exporting the DATABASE_URL environment variable.
+  with `export DATABASE_URL=postgres://root:toor@127.0.0.1:5432/newsletter`
