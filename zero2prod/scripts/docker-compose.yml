@@ -1,8 +1,15 @@
 version: '3.8'
 
+# Docker Images are notorious for having endless security vulnerabilities,
+# but no one speaks about this for some reason. Rapidfort hardens their
+# most common images and releases it to the public with a self-reported
+# massive-albeit incomplete overhaul of the code. I need to inspect these
+# images manually before entering sensitive data, but this seems to be
+# suitable for testing purposes.
+
 services:
   db:
-    image: postgres
+    image: rapidfort/postgres
     restart: always
     environment:
       POSTGRES_USER: root
